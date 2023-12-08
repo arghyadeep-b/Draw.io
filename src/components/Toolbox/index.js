@@ -22,7 +22,7 @@ const Toolbox = () => {
 
     return (
         <div className={styles.toolboxContainer}>
-            {activeMenuItem === MENU_ITEMS.PENCIL && <div className={styles.toolItem} style={{ marginBottom: "1.25rem" }}>
+            {activeMenuItem !== MENU_ITEMS.ERASER && <div className={styles.toolItem} style={{ marginBottom: "1.25rem" }}>
                 <h4 className={styles.toolText}>Brush Color</h4>
                 <div className={styles.itemContainer}>
                     {/* div for color */}

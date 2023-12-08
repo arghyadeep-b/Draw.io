@@ -86,6 +86,10 @@ const Board = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+        // Making canvas white
+        context.fillStyle = 'white';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
         const beginPath = (x, y) => {
             context.beginPath();
             context.moveTo(x, y);
@@ -130,6 +134,7 @@ const Board = () => {
 
         socket.on('beginPath', handleBeginPath);
         socket.on('drawLine', handleDrawLine);
+
 
         return () => {
             canvas.removeEventListener('mousedown', handleMouseDown);

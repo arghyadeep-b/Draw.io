@@ -83,8 +83,9 @@ const Board = () => {
         const context = canvas.getContext('2d');
 
         // when mounting
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        //# -32 is given for the userButton
+        canvas.width = window.innerWidth - 32;
+        canvas.height = window.innerHeight - 32;
 
         // Making canvas white
         context.fillStyle = 'white';
@@ -147,7 +148,9 @@ const Board = () => {
     }, [])
 
     return (
-        <canvas ref={canvasRef}></canvas>
+        <canvas ref={canvasRef}>
+
+        </canvas>
     )
 }
 

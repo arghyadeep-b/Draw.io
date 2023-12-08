@@ -5,10 +5,10 @@
     background-color: theme('colors.background1');
 
     .toolItem{
-        @apply mb-5;
 
         .toolText{
-            font-size: 12px;
+            font-size: 16px;
+            font-weight: 700;
             color: theme('colors.text1');
         }
 

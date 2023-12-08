@@ -18,7 +18,7 @@ const Toolbox = () => {
         dispatch(changeColor({ item: activeMenuItem, color: newColor }))
     };
 
-    const { color } = useSelector((state) => (state.toolbox[activeMenuItem]));
+    const { color, size } = useSelector((state) => (state.toolbox[activeMenuItem]));
 
     return (
         <div className={styles.toolboxContainer}>
@@ -50,7 +50,7 @@ const Toolbox = () => {
                 <h4 className={styles.toolText}>
                     {activeMenuItem === MENU_ITEMS.ERASER ? 'Eraser' : 'Brush'} Size
                 </h4>
-                <input type="range" min={1} max={10} step={1} onChange={updateBrushSize} />
+                <input type="range" min={1} max={10} step={1} value={size} onChange={updateBrushSize} />
             </div>
         </div>
     )

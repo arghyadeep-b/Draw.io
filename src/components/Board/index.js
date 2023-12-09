@@ -23,6 +23,16 @@ const Board = () => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
 
+        const clearPage = () => {
+            context.fillStyle = 'white';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            drawHistory.current.push(imageData);
+            historyPointer.current = drawHistory.current.length - 1;
+
+        }
+
         if (actionMenuItem === MENU_ITEMS.DOWNLOAD) {
             const URL = canvas.toDataURL();
             const anchor = document.createElement('a');
@@ -44,11 +54,18 @@ const Board = () => {
                 const imageData = drawHistory.current[historyPointer.current];
                 context.putImageData(imageData, 0, 0);
             }
-
-
+        }
+        else if (actionMenuItem === MENU_ITEMS.TRASH) {
+            clearPage();
+            socket.emit('clearPage', clearPage);
         }
 
+        socket.on('clearPage', clearPage);
         dispatch(actionItemClick(null));
+
+        return () => {
+            socket.off('clearPage', clearPage);
+        }
     }, [actionMenuItem, dispatch]);
 
 

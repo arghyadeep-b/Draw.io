@@ -30,6 +30,7 @@ const Board = () => {
             const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
             drawHistory.current.push(imageData);
             historyPointer.current = drawHistory.current.length - 1;
+
         }
 
         if (actionMenuItem === MENU_ITEMS.DOWNLOAD) {
@@ -56,9 +57,15 @@ const Board = () => {
         }
         else if (actionMenuItem === MENU_ITEMS.TRASH) {
             clearPage();
+            socket.emit('clearPage', clearPage);
         }
 
+        socket.on('clearPage', clearPage);
         dispatch(actionItemClick(null));
+
+        return () => {
+            socket.off('clearPage', clearPage);
+        }
     }, [actionMenuItem, dispatch]);
 
 
